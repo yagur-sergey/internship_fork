@@ -3,15 +3,15 @@
 Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.2 resource server secured with Keycloak, MongoDB for persistence, and Prometheus/Grafana for metrics. Versions are intentionally pinned for the project2 branch, and everything is wired together through `docker-compose.yml`.
 
 ## Repository layout
-- `client/` – Angular UI for browsing, creating, editing, and deleting realty listings. Uses Keycloak for auth and Angular Material for layout.
-- `resource-server/` – Spring Boot API (`/api/v1`) backed by MongoDB. Includes Keycloak security, MapStruct mappers, Prometheus actuator endpoint, and Docker image build via the `com.bmuschko.docker-spring-boot-application` Gradle plugin.
-- `keycloak/realm-export.json` – realm configuration imported on Keycloak start (see docker-compose).
-- `mongo/init-mongo.js` – seeds Mongo with credentials (`root`/`root`) and a sample realty listing document.
-- `prometheus/prometheus.yml` – scrapes the resource server actuator metrics.
-- `docker-compose.yml` – orchestrates MongoDB, Keycloak, resource server, Angular client, Prometheus, and Grafana.
+- `client/` - Angular UI for browsing, creating, editing, and deleting realty listings. Uses Keycloak for auth and Angular Material for layout.
+- `resource-server/` - Spring Boot API (`/api/v1`) backed by MongoDB. Includes Keycloak security, MapStruct mappers, Prometheus actuator endpoint, and Docker image build via the `com.bmuschko.docker-spring-boot-application` Gradle plugin.
+- `keycloak/realm-export.json` - realm configuration imported on Keycloak start (see docker-compose).
+- `mongo/init-mongo.js` - seeds Mongo with credentials (`root`/`root`) and a sample realty listing document.
+- `prometheus/prometheus.yml` - scrapes the resource server actuator metrics.
+- `docker-compose.yml` - orchestrates MongoDB, Keycloak, resource server, Angular client, Prometheus, and Grafana.
 
 ## Running with Docker Compose
-1. Build the backend image (requires Java 8 for this legacy stack and a Gradle version compatible with Spring Boot 2.2, e.g., Gradle 5–6):
+1. Build the backend image (requires Java 8 for this legacy stack and a Gradle version compatible with Spring Boot 2.2, e.g., Gradle 5-6):
    ```bash
    cd resource-server
    ./gradlew dockerBuildImage   # or `gradle dockerBuildImage` if you do not have a wrapper
@@ -32,9 +32,9 @@ Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.
 - **Dependencies:**
   - MongoDB running with the `realties` database and `root/root` credentials (see `mongo/init-mongo.js`).
   - Keycloak started with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused).
-- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5–6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml` (the project uses the `.yaml` extension).
+- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5-6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml` (the project uses the `.yaml` extension).
 - **Frontend:** `cd client && npm install && npm start` (Angular CLI 8). The app expects Keycloak at `http://localhost:8080`.
 
 ## Testing
-- Backend: `./gradlew test` (or `gradle test` with Gradle 5–6 to avoid plugin compatibility issues).
+- Backend: `./gradlew test` (or `gradle test` with Gradle 5-6 to avoid plugin compatibility issues).
 - Frontend: `cd client && npm test` (Jasmine/Karma).
