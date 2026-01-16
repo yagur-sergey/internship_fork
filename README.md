@@ -31,7 +31,7 @@ Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.
 
 ## Running services without Docker
 - **Dependencies:**
-  - MongoDB running with the `realties` database (name matches the seed script/application config) and `root/root` credentials (see `mongo/init-mongo.js`).
+  - MongoDB running with the `realties` database (intentional name matching the seed script/application config) and `root/root` credentials (see `mongo/init-mongo.js`).
   - Keycloak started with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused).
 - **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5-6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml`.
 - **Frontend:** `cd client && npm install && npm start` (Angular CLI 8). The app expects Keycloak at `http://localhost:8080`.
