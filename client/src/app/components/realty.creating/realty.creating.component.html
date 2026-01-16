@@ -1,0 +1,84 @@
+<div>
+  <div>
+    <div class="center">
+      <h1 class="head">
+        Real Estate Selling Website
+        <mat-icon>location_city</mat-icon>
+      </h1>
+    </div>
+    <mat-toolbar class="none-corner">
+      <div class="all-width">
+        <div class="button-row">
+          <button mat-raised-button (click)="goToRealtiesMy()" class="blue">My Realties</button>
+          <button mat-raised-button (click)="goToRealtiesAll()" class="blue">All Realties</button>
+          <a mat-raised-button href="http://localhost:8080/auth/realms/auth-realm/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/realties" class="to-right warn">
+            <mat-icon>exit_to_app</mat-icon>
+          </a>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+  <mat-card class="padding">
+    <mat-card-header>
+      <mat-card-title>Create new realty</mat-card-title>
+      <mat-card-subtitle><span class="small">
+          You must fill all fields.
+        </span></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="container content" [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+        <mat-card class="half-block content column padding margin">
+          <mat-card-header>
+            <mat-card-subtitle><span class="small">
+                Main information about your realty:
+              </span></mat-card-subtitle>
+          </mat-card-header>
+          <mat-form-field class="example-full-width">
+            <input matInput type="price" placeholder="Price" formControlName="price">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="square" placeholder="Square" formControlName="square">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="type" placeholder="Select type">
+              <mat-option value="HOUSE">HOUSE</mat-option>
+              <mat-option value="OFFICE">OFFICE</mat-option>
+              <mat-option value="FLAT">FLAT</mat-option>
+              <mat-option value="OTHER">OTHER</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBuilding"
+             placeholder="Press on button to choose date of building" disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput type="description" placeholder="Description" formControlName="description">
+          </mat-form-field>
+        </mat-card>
+        <mat-card class="half-block content column padding margin">
+          <mat-card-header>
+            <mat-card-subtitle><span class="small">
+                Address for your realty:
+              </span></mat-card-subtitle>
+          </mat-card-header>
+          <mat-form-field class="example-full-width">
+            <input matInput type="price" placeholder="City" formControlName="city">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="description" placeholder="Street" formControlName="street">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="square" placeholder="House" formControlName="house">
+          </mat-form-field>
+        </mat-card>
+        <div class="button-row all-width padding">
+          <button type="submit" mat-raised-button class="to-right green">Create</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

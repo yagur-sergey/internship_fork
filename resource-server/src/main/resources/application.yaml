@@ -1,0 +1,38 @@
+server:
+  port:
+    8090
+  servlet:
+    context-path: /api/v1
+keycloak:
+  realm: auth-realm
+  resource: resource-server
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: none
+  public-client: true
+  principal-attribute: preferred_username
+
+spring:
+  data:
+    mongodb:
+      authentication-database: realties
+      host: localhost
+      port: 27017
+      database: realties
+      username: root
+      password: root
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+message:
+  resourceNotFound:
+    realty:
+      one: Realty not found
+      list: Realties not found
+    user:
+      one: User not found
+  noRightsForAction: You haven't rights for this action
+  jwtException: Expired or invalid JWT token

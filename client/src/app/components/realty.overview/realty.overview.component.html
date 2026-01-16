@@ -1,0 +1,114 @@
+<div *ngIf="realty">
+  <div>
+    <div class="center">
+      <h1 class="head">
+        Real Estate Selling Website
+        <mat-icon>location_city</mat-icon>
+      </h1>
+    </div>
+    <mat-toolbar class="none-corner">
+      <div class="all-width">
+        <div class="button-row">
+          <button mat-raised-button (click)="goToRealtyAll()" class="blue">All Realties</button>
+          <button mat-raised-button (click)="goToRealtyMy()" class="blue">My Realties</button>
+          <a mat-raised-button href="http://localhost:8080/auth/realms/auth-realm/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/realties" class="to-right warn">
+            <mat-icon>exit_to_app</mat-icon>
+          </a>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+
+  <div class="container">
+
+    <mat-card class="half-width">
+      <mat-card-title>
+        <span>Overview</span>
+        <div class="button-row">
+          <button [style.display]="isVisible ? 'block' : 'none'" mat-raised-button (click)="delete(realty.id)" class="to-right warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button [style.display]="isVisible ? 'block' : 'none'" mat-raised-button (click)="goToRealtyEdit()" class="to-right blue">Edit</button>
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <mat-list>
+          <h2 mat-subheader>Realty</h2>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              monetization_on
+            </mat-icon>
+            <h4 mat-line>Price:</h4>
+            <p mat-line>{{realty.price}} $</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              texture
+            </mat-icon>
+            <h4 mat-line>Square:</h4>
+            <p mat-line>{{realty.square}} (M<sup>2</sup>)</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              layers
+            </mat-icon>
+            <h4 mat-line>Type:</h4>
+            <p mat-line>{{realty.type}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              description
+            </mat-icon>
+            <h4 mat-line>Description:</h4>
+            <p mat-line class="small">{{realty.description}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              schedule
+            </mat-icon>
+            <h4 mat-line>Date of creation:</h4>
+            <p mat-line>{{realty.dateOfCreation}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              date_range
+            </mat-icon>
+            <h4 mat-line>Date of building:</h4>
+            <p mat-line>{{realty.dateOfBuilding}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              my_location
+            </mat-icon>
+            <h4 mat-line>Address:</h4>
+            <p mat-line>City: {{realty.city}}</p>
+            <p mat-line>Street: {{realty.street}}</p>
+            <p mat-line>House: {{realty.house}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>
+              account_box
+            </mat-icon>
+            <h4 mat-line>Owner email:</h4>
+            <p mat-line>{{realty.ownerEmail}}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="half-width">
+      <div class="map">
+        <angular-yandex-map [center]="[53.92151, 30.311008]" [zoom]="6">
+          <angular-yandex-placemark [geometry]="[46.999738, 28.865529]"></angular-yandex-placemark>
+        </angular-yandex-map>
+      </div>
+    </mat-card>
+  </div>
+</div>
