@@ -29,8 +29,10 @@ Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.
    - Grafana: http://localhost:3000
 
 ## Running services without Docker
-- **Dependencies:** ensure MongoDB is available with the `realties` database and `root/root` credentials (see `mongo/init-mongo.js`), and run Keycloak with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused for local runs).
-- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5–6; requires MongoDB and Keycloak running locally; credentials and URLs match `src/main/resources/application.yaml`).
+- **Dependencies:**
+  - MongoDB running with the `realties` database and `root/root` credentials (see `mongo/init-mongo.js`).
+  - Keycloak started with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused).
+- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5–6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml`.
 - **Frontend:** `cd client && npm install && npm start` (Angular CLI 8). The app expects Keycloak at `http://localhost:8080`.
 
 ## Testing
