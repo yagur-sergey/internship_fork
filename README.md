@@ -1,6 +1,6 @@
 ## Project overview (project2)
 
- Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.2 resource server secured with Keycloak, MongoDB for persistence, and Prometheus/Grafana for metrics. Everything is wired together through `docker-compose.yml`.
+Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.2 resource server secured with Keycloak, MongoDB for persistence, and Prometheus/Grafana for metrics. Versions are intentionally pinned for the project2 branch, and everything is wired together through `docker-compose.yml`.
 
 ## Repository layout
 - `client/` – Angular UI for browsing, creating, editing, and deleting realty listings. Uses Keycloak for auth and Angular Material for layout.
@@ -11,7 +11,7 @@
 - `docker-compose.yml` – orchestrates MongoDB, Keycloak, resource server, Angular client, Prometheus, and Grafana.
 
 ## Running with Docker Compose
-1. Build the backend image (requires Java 8 and a Gradle version compatible with Spring Boot 2.2, e.g., Gradle 5–6):
+1. Build the backend image (requires Java 8 for this legacy stack and a Gradle version compatible with Spring Boot 2.2, e.g., Gradle 5–6):
    ```bash
    cd resource-server
    ./gradlew dockerBuildImage   # or `gradle dockerBuildImage` if you do not have a wrapper
@@ -29,6 +29,7 @@
    - Grafana: http://localhost:3000
 
 ## Running services without Docker
+- **Dependencies:** ensure MongoDB is available with the `realties` database and `root/root` credentials (see `mongo/init-mongo.js`), and run Keycloak with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused for local runs).
 - **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5–6; requires MongoDB and Keycloak running locally; credentials and URLs match `src/main/resources/application.yaml`).
 - **Frontend:** `cd client && npm install && npm start` (Angular CLI 8). The app expects Keycloak at `http://localhost:8080`.
 
