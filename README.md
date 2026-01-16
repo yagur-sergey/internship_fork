@@ -11,12 +11,13 @@ Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.
 - `docker-compose.yml` - orchestrates MongoDB, Keycloak, resource server, Angular client, Prometheus, and Grafana.
 
 ## Running with Docker Compose
-1. Build the backend image (requires Java 8 for this legacy stack and a Gradle version compatible with Spring Boot 2.2, e.g., Gradle 5-6):
+1. Build the backend image (requires Java 8 for this legacy stack—OpenJDK 8 matches the Docker base image—and a Gradle version compatible with Spring Boot 2.2, e.g., Gradle 5-6):
    ```bash
    cd resource-server
-   ./gradlew dockerBuildImage   # or `gradle dockerBuildImage` if you do not have a wrapper
+   ./gradlew dockerBuildImage
    cd ..
    ```
+   Note: this branch does not include a Gradle wrapper; install Gradle 5-6 locally or generate a wrapper and use `./gradlew`.
 2. Start the stack (from repo root):
    ```bash
    docker-compose up --build
@@ -32,7 +33,7 @@ Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.
 - **Dependencies:**
   - MongoDB running with the `realties` database and `root/root` credentials (see `mongo/init-mongo.js`).
   - Keycloak started with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused).
-- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5-6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml` (the project uses the `.yaml` extension).
+- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5-6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml`.
 - **Frontend:** `cd client && npm install && npm start` (Angular CLI 8). The app expects Keycloak at `http://localhost:8080`.
 
 ## Testing
