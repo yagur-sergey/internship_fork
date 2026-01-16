@@ -3,10 +3,10 @@
 Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.2 resource server secured with Keycloak, MongoDB for persistence, and Prometheus/Grafana for metrics. Versions are intentionally pinned for the project2 branch, and everything is wired together through `docker-compose.yml`.
 
 ## Repository layout
-- `client/` - Angular UI for browsing, creating, editing, and deleting realty listings. Uses Keycloak for auth and Angular Material for layout.
+- `client/` - Angular UI for browsing, creating, editing, and deleting property listings. Uses Keycloak for auth and Angular Material for layout.
 - `resource-server/` - Spring Boot API (`/api/v1`) backed by MongoDB. Includes Keycloak security, MapStruct mappers, Prometheus actuator endpoint, and Docker image build via the `com.bmuschko.docker-spring-boot-application` Gradle plugin.
 - `keycloak/realm-export.json` - realm configuration imported on Keycloak start (see docker-compose).
-- `mongo/init-mongo.js` - seeds Mongo with credentials (`root`/`root`) and a sample realty listing document.
+- `mongo/init-mongo.js` - seeds Mongo with credentials (`root`/`root`) and a sample property listing document.
 - `prometheus/prometheus.yml` - scrapes the resource server actuator metrics.
 - `docker-compose.yml` - orchestrates MongoDB, Keycloak, resource server, Angular client, Prometheus, and Grafana.
 
@@ -31,7 +31,7 @@ Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.
 
 ## Running services without Docker
 - **Dependencies:**
-  - MongoDB running with the `realties` database and `root/root` credentials (see `mongo/init-mongo.js`).
+  - MongoDB running with the `realties` database (name matches the seed script/application config) and `root/root` credentials (see `mongo/init-mongo.js`).
   - Keycloak started with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused).
 - **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5-6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml`.
 - **Frontend:** `cd client && npm install && npm start` (Angular CLI 8). The app expects Keycloak at `http://localhost:8080`.
