@@ -32,7 +32,7 @@ Full-stack realty listing sample composed of an Angular 8 client, Spring Boot 2.
 - **Dependencies:**
   - MongoDB running with the `realties` database and `root/root` credentials (see `mongo/init-mongo.js`).
   - Keycloak started with the provided `keycloak/realm-export.json` import (the Keycloak service in `docker-compose` can be reused).
-- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5–6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml`.
+- **Backend:** `cd resource-server && ./gradlew bootRun` (or `gradle bootRun` with Gradle 5–6). Requires MongoDB and Keycloak running locally; URLs match `src/main/resources/application.yaml` (the project uses the `.yaml` extension).
 - **Frontend:** `cd client && npm install && npm start` (Angular CLI 8). The app expects Keycloak at `http://localhost:8080`.
 
 ## Testing
