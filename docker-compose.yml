@@ -22,7 +22,6 @@ services:
       - '8090:8090'
     depends_on:
       - db
-      - keycloak
     network_mode: 'host'
 
   frontend:
@@ -33,23 +32,8 @@ services:
     depends_on:
       - db
       - backend
-      - keycloak
     networks: 
     - project-network
-
-  keycloak:
-    container_name: 'auth-server'
-    image: jboss/keycloak:8.0.1
-    volumes: 
-      - ./keycloak:/opt/jboss/keycloak/imports
-    environment: 
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
-    ports: 
-      - '8080:8080'
-    command: "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
-    networks: 
-      - project-network
 
   grafana:
     container_name: 'grafana'

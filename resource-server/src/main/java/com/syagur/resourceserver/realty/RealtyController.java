@@ -2,7 +2,6 @@ package com.syagur.resourceserver.realty;
 
 import com.syagur.resourceserver.common.util.Converter;
 import lombok.RequiredArgsConstructor;
-import org.keycloak.KeycloakSecurityContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -100,11 +99,8 @@ public class RealtyController {
     }
 
     private String getAuthorizedUserEmail() {
-        KeycloakSecurityContext context = (KeycloakSecurityContext) request.getAttribute(
-                KeycloakSecurityContext
-                        .class
-                        .getName());
-        return context.getToken().getEmail();
+        // Without authentication, return a default user email
+        return "user@example.com";
     }
 
     private Realty withDefaultDescription(Realty realty) {

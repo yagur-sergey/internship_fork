@@ -23,9 +23,6 @@
     "@angular/router": "~8.2.14",
     "angular8-yandex-maps": "^1.10.3",
     "hammerjs": "^2.0.8",
-    "keycloak-angular": "^7.1.0",
-    "keycloak-js": "^8.0.1",
-    "ng-keycloak": "0.0.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

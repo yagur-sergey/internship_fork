@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
-import { initializer } from './utils/app-init';
+import { NgModule } from '@angular/core';
 import { RealtyCreatingComponent } from './components/realty.creating/realty.creating.component';
 import { RealtiesMyListComponent } from './components/realties.my.list/realties.my.list.component';
 import { RealtyEditingComponent } from './components/realty.editing/realty.editing.component';
@@ -53,7 +51,6 @@ import { from } from 'rxjs';
 
   ],
   imports: [
-    KeycloakAngularModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -87,14 +84,7 @@ import { from } from 'rxjs';
     AngularYandexMapsModule.forRoot('94004118-bc46-4c2a-989d-5a622bc8bf64')
     
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializer,
-      multi: true,
-      deps: [KeycloakService]
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 
