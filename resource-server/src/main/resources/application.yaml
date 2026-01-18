@@ -3,13 +3,6 @@ server:
     8090
   servlet:
     context-path: /api/v1
-keycloak:
-  realm: auth-realm
-  resource: resource-server
-  auth-server-url: http://localhost:8080/auth
-  ssl-required: none
-  public-client: true
-  principal-attribute: preferred_username
 
 spring:
   data:
