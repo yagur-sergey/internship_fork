@@ -2,18 +2,19 @@ version: '3'
 services:
   db:
     container_name: 'mongodb'
-    image: mongo
+    image: mongo:8.0 # Updated to latest stable MongoDB version
     restart: always
     volumes: 
       - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     environment:
+      # FIXME: Move credentials to environment variables or secrets management
       - MONGO_INITDB_DATABASE=realties
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
       - MONGODB_USER=root
       - MONGODB_PASS=root
       - MONGODB_DATABASE=realties
-    network_mode: 'host'
+    network_mode: 'host' # TODO: Migrate to project-network for better isolation
 
   backend:
     container_name: 'resource-server'
@@ -22,7 +23,7 @@ services:
       - '8090:8090'
     depends_on:
       - db
-    network_mode: 'host'
+    network_mode: 'host' # TODO: Migrate to project-network for consistency
 
   frontend:
     container_name: 'client-server'
@@ -37,23 +38,23 @@ services:
 
   grafana:
     container_name: 'grafana'
-    image: grafana/grafana
+    image: grafana/grafana:11.4.0 # Updated to latest stable Grafana version
     ports:
       - "3000:3000"
     volumes:
       - /var/lib/grafana
     depends_on:
       - prometheus
-    network_mode: 'host'
+    network_mode: 'host' # TODO: Migrate to project-network and fix service discovery
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:v3.1.0 # Updated to latest stable Prometheus version
     container_name: prometheus
     ports:
       - "9090:9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    network_mode: 'host'
+    network_mode: 'host' # TODO: Migrate to project-network for better isolation
 
 networks:
   project-network: {}

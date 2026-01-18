@@ -7,6 +7,7 @@ server:
 spring:
   data:
     mongodb:
+      # FIXME: Move credentials to environment variables or secrets management
       authentication-database: realties
       host: localhost
       port: 27017
@@ -18,7 +19,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: '*' # TODO: Restrict to specific endpoints in production (e.g., health,info,prometheus)
 
 message:
   resourceNotFound:
